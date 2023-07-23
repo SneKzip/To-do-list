@@ -4,7 +4,8 @@ $(document).ready(() => {
     
     $(".btn-success").on("click", () => {
         if(!$(".form-control").val()){
-            console.log("error");
+            value.attr("placeholder", "Поле не должно быть пустым, введите что-либо");
+            value.addClass("border-danger");
         }
         else{
             $(".main").append("<div data-card = '"+id+"'class = 'card note'></div>");
@@ -14,6 +15,8 @@ $(document).ready(() => {
             $("[data-card-body = '" + id + "']").append("<div class = 'no'><input data-delete = '" + id + "'type = 'button' class = 'btn btn-outline-danger' value = 'X'></div>");
             value.val("");
             id++;
+            value.attr("placeholder", "Напишите тут что-нибудь...");
+            value.removeClass("border-danger");
         }
     });
 
@@ -24,6 +27,6 @@ $(document).ready(() => {
     });
     
     $("body").on('click', '.btn-outline-success', (event)=>{
-        $("[data-card = '" + event.target.dataset.success + "']").addClass("border-success");
+        $("[data-card = '" + event.target.dataset.success + "']").toggleClass("border-success");
     });
 });
